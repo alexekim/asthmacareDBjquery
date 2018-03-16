@@ -1,0 +1,11 @@
+<p id="updatedDate" style="display:none">${Updated}</p>
+<script>
+  var checkStateAndReplaceDate = function() {
+    var updatedDate = document.getElementById("updatedDate").innerHTML;
+    $(".last_update").css("display", "inline-block");
+    $(".last_update").html(updatedDate);
+  }
+  document.addEventListener("DOMContentLoaded", function(event) {
+    setTimeout(checkStateAndReplaceDate, 1000);
+  })
+</script>
