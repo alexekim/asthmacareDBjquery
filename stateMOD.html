@@ -1,0 +1,189 @@
+<style>
+  /* temporary display none that will change in javascript */
+  /*.last_update { display: none;}*/
+</style>
+
+<script src="/js/asthmacare/ArbitraryOverrides.js"></script>
+<script src="/js/asthmacare/AggregateOverrides.js"></script>
+<script src="/js/asthmacare/PlaceholderReplacer.js"></script>
+<script src="/js/asthmacare/StateIdDiviner.js"></script>
+<script src="/js/asthmacare/StateDataRemapper.js"></script>
+<script src="/js/asthmacare/StateFetcher.js"></script>
+<script src="/js/asthmacare/States.js"></script>
+<script src="/js/asthmacare/State.js"></script>
+
+<script>
+	jQuery(document).ready(function() {
+		new States('http://webservices.lung.org:8000');
+	});
+</script>
+
+<script>
+	jQuery(document).ready(function() {
+		var urlPrefix = 'http://webservices.lung.org:8000';
+
+		new State(
+			new PlaceholderReplacer(),
+			new StateFetcher(
+				urlPrefix,
+				new StateDataRemapper(
+					ArbitraryOverrides,
+					AggregateOverrides)),
+			new StateIdDiviner()
+		);
+
+		var stateIdDiviner = new StateIdDiviner();
+		jQuery('.pdf_link').prop('href', urlPrefix + '/state-pdf/' + stateIdDiviner.divine());
+	});
+</script>
+
+<!-- Asthma Database Styles -->
+<div id="item-861181145" class="templateComponent" style="display: inline;"></div>
+
+<style>
+#asthma_database.states ul.state_list, #asthma_database.states .loading, #asthma_database.states .page_error, #asthma_database.states .templates {display: none;}
+</style>
+
+<div id="asthma_database" class="states right">
+	<div class="success">
+		<section>
+			<select class="state_list">
+				<option value="none">View a different state:</option>
+			</select>
+		</section>
+		<section>
+			<ul class="state_list"></ul>
+		</section>
+	</div>
+
+	<div class="loading">Loading...</div>
+
+	<div class="page_error"> </div>
+
+	<div class="templates">
+		<ul>
+			<li class="state_item"><a href="/preview!www.lung.org/lung-health-and-diseases/lung-disease-lookup/asthma/asthma-education-advocacy/asthma-care-coverage/state.html?id={{ id }}">{{ name }}</a></li>
+		</ul>
+	</div>
+
+</div>
+
+<div id="asthma_database" class="state">
+	<a href="" class="pdf_link button blue" target="_blank" styl>Download PDF</a>
+
+	<h1 class="internalPageTitle">Asthma Care Coverage Database: <span class="state-name"></span></h1>
+	<p class="footnote">
+    <strong>Data Last Updated:</strong>
+    <!-- class="last_update" will dynamically pull a date from the database -->
+    <!-- <span class="last_update"></span> -->
+    class="last_update_static" will static date from properties page
+    <span class="last_update_static">${Updated}</span>
+
+  </p>
+	<a href="" class="pdf_link button blue mobile" target="_blank" styl>Download PDF</a>
+
+	<a href="#" id="asthmaLegendOpen" class="accordion right"><i class="fa fa-list-alt" aria-hidden="true"></i></a>
+	<div class="panel">
+ 		 <h1>Legend</h1>
+		<p><strong>Coverage Values:</strong></p>
+		<ul id="coverage-values" class="legend">
+			<li><span class="yes">Y</span> = Yes, covered for all Medicaid enrollees</li>
+			<li><span class="no">N</span> = Not covered for Medicaid enrollees</li>
+			<li><span class="asterisk">*</span> = Coverage varies across state Medicaid plans</li>
+		</ul>
+		<p><strong>Barrier Values:</strong></p>
+		<ul id="barrier-values" class="legend">
+			<li><span class="yes">Y</span> = Yes; barrier exists in all the state Medicaid plans that cover the specified asthma service or treatment</li>
+			<li><span class="no">N</span> = No; barrier does not exist in any state Medicaid plan that covers the specified asthma service or treatment</li>
+			<li><span class="asterisk">*</span> = The barrier exists in some of the state Medicaid plans that cover the specified asthma service or treatment</li>
+			<li><span class="not-available">NAv</span> = Barrier information is not available for the state Medicaid plans that cover the specified asthma service or treatment</li>
+			<li><span class="not-applicable">N/A</span> = The barrier is not applicable for the specified asthma service or treatment</li>
+		</ul>
+		<p><strong>Barriers:</strong></p>
+		<ul id="barriers" class="legend">
+			<li><span class="age-limit">AL</span> = Age Limit (coverage for individuals under a certain age)</li>
+			<li><span class="age-restriction">AR</span> = Age Restriction (coverage for individuals over a certain age)</li>
+			<li><span class="copayment">CO-PAY</span> = Copayment (a fee a patient is responsible for to receive treatment or service)</li>
+			<li><span class="durable-medical-equipment">DME</span> = Durable Medical Equipment (treatment or service covered as a DME benefit)</li>
+			<li><span class="eligibility-criteria">EC</span> = Eligibility Criteria (indicates a patient needs to meet certain criteria before receiving a treatment or service)</li>
+			<li><span class="prior-authorization">PA</span> = Prior Authorization (service must be approved before patient receives care)</li>
+			<li><span class="quantity-limit">QL</span> = Quantity Limit (restricting amount of service or treatment in a specified time)</li>
+			<li><span class="specialty-visit-limitation">SVL</span> = Specialty Visit Limitation (a service or treatment can only be accessed through a specialist and specialty visits are limited to a set number during a year)</li>
+			<li><span class="step-therapy">ST</span> = Step Therapy (a treatment or service can be received only after other forms of therapy have been tried)</li>
+		</ul>
+	</div>
+
+	<div class="success">
+		<div class="coverage_container"></div>
+		<ul class="articles"></ul>
+	</div>
+
+	<div class="loading">Loading...</div>
+
+	<div class="page_error"><strong>An error has occured; please try again&nbsp;later.</strong> If you are an Internet Explorer user, you must upgrade to version 10 or newer in order to view this&nbsp;content.</div>
+
+	<div class="unpublished">This state's data is not available at this time.</div>
+
+	<div class="invalid_state_id">The requested state is invalid.  Please <a href="/preview!www.lung.org/lung-health-and-diseases/lung-disease-lookup/asthma/asthma-education-advocacy/asthma-care-coverage/database/">return</a>.</div>
+
+	<div class="templates">
+		<section class="coverage_set">
+			<h3 class="coverage_type target"></h3>
+			<table>
+				<thead>
+					<tr>
+						<th>Component</th>
+						<th>Coverage</th>
+						<th title="Age Limit">AL</th>
+						<th title="Age Restrictions">AR</th>
+						<th title="Co-Payments">CO-PAY</th>
+						<th title="Durable Medical Equipment">DME</th>
+						<th title="Eligibility Criteria">EC</th>
+						<th title="Prior Authorization">PA</th>
+						<th title="Quantity Limits">QL</th>
+						<th title="Specialty Visit Limitations">SVL</th>
+						<th title="Stepped Therapy">ST</th>
+					</tr>
+				</thead>
+				<tbody class="coverage_body target"></tbody>
+			</table>
+		</section>
+			<table>
+				<tr class="coverage_items">
+					<td class="component target"></td>
+					<td class="value target"></td>
+					<td class="AL target"></td>
+					<td class="AR target"></td>
+					<td class="CP target"></td>
+					<td class="DME target"></td>
+					<td class="EC target"></td>
+					<td class="PA target"></td>
+					<td class="QL target"></td>
+					<td class="SVL target"></td>
+					<td class="ST target"></td>
+				</tr>
+			</table>
+
+			<li class="article"><a></a></li>
+	</div>
+
+</div>
+
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].onclick = function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight){
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    }
+  }
+}
+</script>
+
+<!-- TEST SPACE -->
