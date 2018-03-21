@@ -4,6 +4,7 @@
 <p id="Arkansas" style="display:none">${Arkansas}</p>
 <p id="California" style="display:none">${California}</p>
 <p id="Colorado" style="display:none">${Colorado}</p>
+<p id="Connecticut" style="display:none">${Connecticut}</p>
 <p id="Delaware" style="display:none">${Delaware}</p>
 <p id="Florida" style="display:none">${Florida}</p>
 <p id="Georgia" style="display:none">${Georgia}</p>
@@ -51,218 +52,171 @@
 
 
 <script>
+  var Alabama = document.getElementById("Alabama").innerHTML;
+  var Alaska = document.getElementById("Alaska").innerHTML;
+  var Arizona = document.getElementById("Arizona").innerHTML;
+  var Arkansas = document.getElementById("Arkansas").innerHTML;
+  var California = document.getElementById("California").innerHTML;
+  var Colorado = document.getElementById("Colorado").innerHTML;
+  var Connecticut = document.getElementById("Connecticut").innerHTML;
+  var Delaware = document.getElementById("Delaware").innerHTML;
+  var Florida = document.getElementById("Florida").innerHTML;
+  var Georgia = document.getElementById("Georgia").innerHTML;
+  var Hawaii = document.getElementById("Hawaii").innerHTML;
+  var Idaho = document.getElementById("Idaho").innerHTML;
+  var Illinois = document.getElementById("Illinois").innerHTML;
+  var Indiana = document.getElementById("Indiana").innerHTML;
+  var Iowa = document.getElementById("Iowa").innerHTML;
+  var Kansas = document.getElementById("Kansas").innerHTML;
+  var Kentucky = document.getElementById("Kentucky").innerHTML;
+  var Louisiana = document.getElementById("Louisiana").innerHTML;
+  var Maine = document.getElementById("Maine").innerHTML;
+  var Maryland = document.getElementById("Maryland").innerHTML;
+  var Massachusetts = document.getElementById("Massachusetts").innerHTML;
+  var Michigan = document.getElementById("Michigan").innerHTML;
+  var Minnesota = document.getElementById("Minnesota").innerHTML;
+  var Mississippi = document.getElementById("Mississippi").innerHTML;
+  var Missouri = document.getElementById("Missouri").innerHTML;
+  var Montana = document.getElementById("Montana").innerHTML;
+  var Nebraska = document.getElementById("Nebraska").innerHTML;
+  var Nevada = document.getElementById("Nevada").innerHTML;
+  var New_hampshire = document.getElementById("New_hampshire").innerHTML;
+  var New_jersey = document.getElementById("New_jersey").innerHTML;
+  var New_mexico = document.getElementById("New_mexico").innerHTML;
+  var New_york = document.getElementById("New_york").innerHTML;
+  var North_carolina = document.getElementById("North_carolina").innerHTML;
+  var North_dakota = document.getElementById("North_dakota").innerHTML;
+  var Ohio = document.getElementById("Ohio").innerHTML;
+  var Oklahoma = document.getElementById("Oklahoma").innerHTML;
+  var Oregon = document.getElementById("Oregon").innerHTML;
+  var Pennsylvania = document.getElementById("Pennsylvania").innerHTML;
+  var Rhode_island = document.getElementById("Rhode_island").innerHTML;
+  var South_carolina = document.getElementById("South_carolina").innerHTML;
+  var South_dakota = document.getElementById("South_dakota").innerHTML;
+  var Tennessee = document.getElementById("Tennessee").innerHTML;
+  var Texas = document.getElementById("Texas").innerHTML;
+  var Utah = document.getElementById("Utah").innerHTML;
+  var Vermont = document.getElementById("Vermont").innerHTML;
+  var Virginia = document.getElementById("Virginia").innerHTML;
+  var Washington = document.getElementById("Washington").innerHTML;
+  var West_virginia = document.getElementById("West_virginia").innerHTML;
+  var Wisconsin = document.getElementById("Wisconsin").innerHTML;
+  var Wyoming = document.getElementById("Wyoming").innerHTML;
+
   var checkStateAndReplaceDate = function() {
     var asthmaCareCheck = document.URL;
     var asthmaURL = "http://www.lung.org/lung-health-and-diseases/lung-disease-lookup/asthma/asthma-education-advocacy/asthma-care-coverage/database/state2.html";
-    var Alabama = document.getElementById("Alabama").innerHTML;
-    var Alaska = document.getElementById("Alaska").innerHTML;
-    var Arizona = document.getElementById("Arizona").innerHTML;
-    var Arkansas = document.getElementById("Arkansas").innerHTML;
-    var California = document.getElementById("California").innerHTML;
-    var Colorado = document.getElementById("Colorado").innerHTML;
-    var Delaware = document.getElementById("Delaware").innerHTML;
-    var Florida = document.getElementById("Florida").innerHTML;
-    var Georgia = document.getElementById("Georgia").innerHTML;
-    var Hawaii = document.getElementById("Hawaii").innerHTML;
-    var Idaho = document.getElementById("Idaho").innerHTML;
-    var Illinois = document.getElementById("Illinois").innerHTML;
-    var Indiana = document.getElementById("Indiana").innerHTML;
-    var Iowa = document.getElementById("Iowa").innerHTML;
-    var Kansas = document.getElementById("Kansas").innerHTML;
-    var Kentucky = document.getElementById("Kentucky").innerHTML;
-    var Louisiana = document.getElementById("Louisiana").innerHTML;
-    var Maine = document.getElementById("Maine").innerHTML;
-    var Maryland = document.getElementById("Maryland").innerHTML;
-    var Massachusetts = document.getElementById("Massachusetts").innerHTML;
-    var Michigan = document.getElementById("Michigan").innerHTML;
-    var Minnesota = document.getElementById("Minnesota").innerHTML;
-    var Mississippi = document.getElementById("Mississippi").innerHTML;
-    var Missouri = document.getElementById("Missouri").innerHTML;
-    var Montana = document.getElementById("Montana").innerHTML;
-    var Nebraska = document.getElementById("Nebraska").innerHTML;
-    var Nevada = document.getElementById("Nevada").innerHTML;
-    var New_hampshire = document.getElementById("New_hampshire").innerHTML;
-    var New_jersey = document.getElementById("New_jersey").innerHTML;
-    var New_mexico = document.getElementById("New_mexico").innerHTML;
-    var New_york = document.getElementById("New_york").innerHTML;
-    var North_carolina = document.getElementById("North_carolina").innerHTML;
-    var North_dakota = document.getElementById("North_dakota").innerHTML;
-    var Ohio = document.getElementById("Ohio").innerHTML;
-    var Oklahoma = document.getElementById("Oklahoma").innerHTML;
-    var Oregon = document.getElementById("Oregon").innerHTML;
-    var Pennsylvania = document.getElementById("Pennsylvania").innerHTML;
-    var Rhode_island = document.getElementById("Rhode_island").innerHTML;
-    var South_dakota = document.getElementById("South_dakota").innerHTML;
-    var Tennessee = document.getElementById("Tennessee").innerHTML;
-    var Texas = document.getElementById("Texas").innerHTML;
-    var Utah = document.getElementById("Utah").innerHTML;
-    var Vermont = document.getElementById("Vermont").innerHTML;
-    var Virginia = document.getElementById("Virginia").innerHTML;
-    var Washington = document.getElementById("Washington").innerHTML;
-    var West_virginia = document.getElementById("West_virginia").innerHTML;
-    var Wisconsin = document.getElementById("Wisconsin").innerHTML;
-    var Wyoming = document.getElementById("Wyoming").innerHTML;
 
     if (asthmaCareCheck.indexOf(asthmaURL) != -1) {
       var currentState = document.getElementsByClassName("state-name")[0].innerHTML.toLowerCase();
-      if (currentState == "alabama") {
+      if (currentState == "alabama" && Alabama != "") {
         $(".last_update").html(Alabama);
-      }
-      if (currentState == "alaska") {
+      } else if (currentState == "alaska" && Alaska != "") {
         $(".last_update").html(Alaska);
-      }
-      if (currentState == "arizona") {
+      } else if (currentState == "arizona" && Arizona != "") {
         $(".last_update").html(Arizona);
-      }
-      if (currentState == "arkansas") {
+      } else if (currentState == "arkansas" && Arkansas != "") {
         $(".last_update").html(Arkansas);
-      }
-      if (currentState == "california") {
+      } else if (currentState == "california" && California != "") {
         $(".last_update").html(California);
-      }
-      if (currentState == "colorado") {
+      } else if (currentState == "colorado" && Colorado != "") {
         $(".last_update").html(Colorado);
-      }
-      if (currentState == "delaware") {
+      } else if (currentState == "connecticut" && Connecticut != "") {
+        $(".last_update").html(Connecticut);
+      } else if (currentState == "delaware" && Delaware != "") {
         $(".last_update").html(Delaware);
-      }
-      if (currentState == "florida") {
+      } else if (currentState == "florida" && Florida != "") {
         $(".last_update").html(Florida);
-      }
-      if (currentState == "georgia") {
+      } else if (currentState == "georgia" && Georgia != "") {
         $(".last_update").html(Georgia);
-      }
-      if (currentState == "hawaii") {
+      } else if (currentState == "hawaii" && Hawaii != "") {
         $(".last_update").html(Hawaii);
-      }
-      if (currentState == "idaho") {
+      } else if (currentState == "idaho" && Idaho != "") {
         $(".last_update").html(Idaho);
-      }
-      if (currentState == "illinois") {
+      } else if (currentState == "illinois" && Illinois != "") {
         $(".last_update").html(Illinois);
-      }
-      if (currentState == "indiana") {
+      } else if (currentState == "indiana" && Indiana != "") {
         $(".last_update").html(Indiana);
-      }
-      if (currentState == "iowa") {
+      } else if (currentState == "iowa" && Iowa != "") {
         $(".last_update").html(Iowa);
-      }
-      if (currentState == "kansas") {
+      } else if (currentState == "kansas" && Kansas != "") {
         $(".last_update").html(Kansas);
-      }
-      if (currentState == "kentucky") {
+      } else if (currentState == "kentucky" && Kentucky != "") {
         $(".last_update").html(Kentucky);
-      }
-      if (currentState == "louisiana") {
+      } else if (currentState == "louisiana" && Louisiana != "") {
         $(".last_update").html(Louisiana);
-      }
-      if (currentState == "maine") {
+      } else if (currentState == "maine" && Maine != "") {
         $(".last_update").html(Maine);
-      }
-      if (currentState == "maryland") {
+      } else if (currentState == "maryland" && Maryland != "") {
         $(".last_update").html(Maryland);
-      }
-      if (currentState == "massachusetts") {
+      } else if (currentState == "massachusetts" && Massachusetts != "") {
         $(".last_update").html(Massachusetts);
-      }
-      if (currentState == "michigan") {
+      } else if (currentState == "michigan" && Michigan != "") {
         $(".last_update").html(Michigan);
-      }
-      if (currentState == "minnesota") {
+      } else if (currentState == "minnesota" && Minnesota != "") {
         $(".last_update").html(Minnesota);
-      }
-      if (currentState == "missouri") {
+      } else if (currentState == "mississippi" && mississippi != "") {
+        $(".last_update").html(Mississippi);
+      } else if (currentState == "missouri" && Missouri != "") {
         $(".last_update").html(Missouri);
-      }
-      if (currentState == "montana") {
+      } else if (currentState == "montana" && Montana != "") {
         $(".last_update").html(Montana);
-      }
-      if (currentState == "nebraska") {
+      } else if (currentState == "nebraska" && Nebraska != "") {
         $(".last_update").html(Nebraska);
-      }
-      if (currentState == "nevada") {
+      } else if (currentState == "nevada" && Nevada != "") {
         $(".last_update").html(Nevada);
-      }
-      if (currentState == "new hampshire") {
-        $(".last_update").html(New_Hampshire);
-      }
-      if (currentState == "new jersey") {
+      } else if (currentState == "new hampshire" && New_hampshire != "") {
+        $(".last_update").html(New_hampshire);
+      } else if (currentState == "new jersey" && New_jersey != "") {
         $(".last_update").html(New_jersey);
-      }
-      if (currentState == "new mexico") {
+      } else if (currentState == "new mexico" && New_mexico != "") {
         $(".last_update").html(New_mexico);
-      }
-      if (currentState == "new york") {
-        $(".last_update").html(New_York);
-      }
-      if (currentState == "north carolina") {
+      } else if (currentState == "new york" && New_york != "") {
+        $(".last_update").html(New_york);
+      } else if (currentState == "north carolina" && North_carolina != "") {
         $(".last_update").html(North_carolina);
-      }
-      if (currentState == "north dakota") {
+      } else if (currentState == "north dakota" && North_dakota != "") {
         $(".last_update").html(North_dakota);
-      }
-      if (currentState == "ohio") {
+      } else if (currentState == "ohio" && Ohio != "") {
         $(".last_update").html(Ohio);
-      }
-      if (currentState == "oklahoma") {
+      } else if (currentState == "oklahoma" && Oklahoma != "") {
         $(".last_update").html(Oklahoma);
-      }
-      if (currentState == "oregon") {
+      } else if (currentState == "oregon" && Oregon != "") {
         $(".last_update").html(Oregon);
-      }
-
-      if (currentState == "pennsylvania") {
+      } else if (currentState == "pennsylvania" && Pennsylvania != "") {
         $(".last_update").html(Pennsylvania);
-      }
-
-      if (currentState == "rhode island") {
+      } else if (currentState == "rhode island" && Rhode_island != "") {
         $(".last_update").html(Rhode_island);
-      }
-
-      if (currentState == "south dakota") {
+      } else if (currentState == "south carolina" && South_carolina != "") {
+        $(".last_update").html(South_carolina);
+      } else if (currentState == "south dakota" && South_dakota != "") {
         $(".last_update").html(South_dakota);
-      }
-
-      if (currentState == "tennessee") {
+      } else if (currentState == "tennessee" && Tennessee != "") {
         $(".last_update").html(Tennessee);
-      }
-
-      if (currentState == "texas") {
+      } else if (currentState == "texas" && Texas != "") {
         $(".last_update").html(Texas);
-      }
-
-      if (currentState == "utah") {
+      } else if (currentState == "utah" && Utah != "") {
         $(".last_update").html(Utah);
-      }
-
-      if (currentState == "vermont") {
+      } else if (currentState == "vermont" && Vermont != "") {
         $(".last_update").html(Vermont);
-      }
-
-      if (currentState == "virginia") {
+      } else if (currentState == "virginia" && Virginia != "") {
         $(".last_update").html(Virginia);
-      }
-
-      if (currentState == "washington") {
+      } else if (currentState == "washington" && Washington != "") {
         $(".last_update").html(Washington);
-      }
-
-      if (currentState == "west_virginia") {
+      } else if (currentState == "west_virginia" && West_virginia != "") {
         $(".last_update").html(West_virginia);
-      }
-
-      if (currentState == "wisconsin") {
+      } else if (currentState == "wisconsin" && Wisconsin != "") {
         $(".last_update").html(Wisconsin);
-      }
-
-      if (currentState == "wyoming") {
+      } else if (currentState == "wyoming" && Wyoming != "") {
         $(".last_update").html(Wyoming);
+      } else {
+        console.warn("no state-specific customized date.")
       }
-
-    } else {
-      console.log("not an asthmacarecoveragedatabasepage");
     }
-  }
+    else {
+      console.warn("not an asthmacarecoveragedatabasepage");
+    }
+  };
 
   document.addEventListener("DOMContentLoaded", function(event) {
     setTimeout(checkStateAndReplaceDate, 1500);
