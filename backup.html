@@ -1,3 +1,186 @@
+<style>
+  /* temporary display none that will change in javascript */
+  /*.last_update { display: none;}*/
+</style>
+
+<script src="/js/asthmacare/ArbitraryOverrides.js"></script>
+<script src="/js/asthmacare/AggregateOverrides.js"></script>
+<script src="/js/asthmacare/PlaceholderReplacer.js"></script>
+<script src="/js/asthmacare/StateIdDiviner.js"></script>
+<script src="/js/asthmacare/StateDataRemapper.js"></script>
+<script src="/js/asthmacare/StateFetcher.js"></script>
+<script src="/js/asthmacare/States.js"></script>
+<script src="/js/asthmacare/State.js"></script>
+
+<script>
+	jQuery(document).ready(function() {
+		new States('http://webservices.lung.org:8000');
+	});
+</script>
+
+<script>
+	jQuery(document).ready(function() {
+		var urlPrefix = 'http://webservices.lung.org:8000';
+
+		new State(
+			new PlaceholderReplacer(),
+			new StateFetcher(
+				urlPrefix,
+				new StateDataRemapper(
+					ArbitraryOverrides,
+					AggregateOverrides)),
+			new StateIdDiviner()
+		);
+
+		var stateIdDiviner = new StateIdDiviner();
+		jQuery('.pdf_link').prop('href', urlPrefix + '/state-pdf/' + stateIdDiviner.divine());
+	});
+</script>
+
+<!-- Asthma Database Styles -->
+<div id="item-863001644" class="templateComponent" style="display: inline;"></div>
+
+<style>
+#asthma_database.states ul.state_list, #asthma_database.states .loading, #asthma_database.states .page_error, #asthma_database.states .templates {display: none;}
+</style>
+
+<div id="asthma_database" class="states right">
+	<div class="success">
+		<section>
+			<select class="state_list">
+				<option value="none">View a different state:</option>
+			</select>
+		</section>
+		<section>
+			<ul class="state_list"></ul>
+		</section>
+	</div>
+
+	<div class="loading">Loading...</div>
+
+	<div class="page_error"> </div>
+
+	<div class="templates">
+		<ul>
+			<li class="state_item"><a href="/preview!www.lung.org/lung-health-and-diseases/lung-disease-lookup/asthma/asthma-education-advocacy/asthma-care-coverage/state.html?id={{ id }}">{{ name }}</a></li>
+		</ul>
+	</div>
+
+</div>
+
+<div id="asthma_database" class="state">
+	<a href="" class="pdf_link button blue" target="_blank" styl>Download PDF</a>
+
+	<h1 class="internalPageTitle">Asthma Care Coverage Database: <span class="state-name"></span></h1>
+	<p class="footnote"><strong>Data Last Updated:</strong> <span class="last_update"><img style="height: 50px; width: 50px;" src="http://awasudesign.vyqdy3k2nc1vkrjlhx.netdna-cdn.com/wp-content/uploads/2017/03/spinner-1.gif" /></span></p>
+	<a href="" class="pdf_link button blue mobile" target="_blank" styl>Download PDF</a>
+
+	<a href="#" id="asthmaLegendOpen" class="accordion right"><i class="fa fa-list-alt" aria-hidden="true"></i></a>
+	<div class="panel">
+ 		 <h1>Legend</h1>
+		<p><strong>Coverage Values:</strong></p>
+		<ul id="coverage-values" class="legend">
+			<li><span class="yes">Y</span> = Yes, covered for all Medicaid enrollees</li>
+			<li><span class="no">N</span> = Not covered for Medicaid enrollees</li>
+			<li><span class="asterisk">*</span> = Coverage varies across state Medicaid plans</li>
+		</ul>
+		<p><strong>Barrier Values:</strong></p>
+		<ul id="barrier-values" class="legend">
+			<li><span class="yes">Y</span> = Yes; barrier exists in all the state Medicaid plans that cover the specified asthma service or treatment</li>
+			<li><span class="no">N</span> = No; barrier does not exist in any state Medicaid plan that covers the specified asthma service or treatment</li>
+			<li><span class="asterisk">*</span> = The barrier exists in some of the state Medicaid plans that cover the specified asthma service or treatment</li>
+			<li><span class="not-available">NAv</span> = Barrier information is not available for the state Medicaid plans that cover the specified asthma service or treatment</li>
+			<li><span class="not-applicable">N/A</span> = The barrier is not applicable for the specified asthma service or treatment</li>
+		</ul>
+		<p><strong>Barriers:</strong></p>
+		<ul id="barriers" class="legend">
+			<li><span class="age-limit">AL</span> = Age Limit (coverage for individuals under a certain age)</li>
+			<li><span class="age-restriction">AR</span> = Age Restriction (coverage for individuals over a certain age)</li>
+			<li><span class="copayment">CO-PAY</span> = Copayment (a fee a patient is responsible for to receive treatment or service)</li>
+			<li><span class="durable-medical-equipment">DME</span> = Durable Medical Equipment (treatment or service covered as a DME benefit)</li>
+			<li><span class="eligibility-criteria">EC</span> = Eligibility Criteria (indicates a patient needs to meet certain criteria before receiving a treatment or service)</li>
+			<li><span class="prior-authorization">PA</span> = Prior Authorization (service must be approved before patient receives care)</li>
+			<li><span class="quantity-limit">QL</span> = Quantity Limit (restricting amount of service or treatment in a specified time)</li>
+			<li><span class="specialty-visit-limitation">SVL</span> = Specialty Visit Limitation (a service or treatment can only be accessed through a specialist and specialty visits are limited to a set number during a year)</li>
+			<li><span class="step-therapy">ST</span> = Step Therapy (a treatment or service can be received only after other forms of therapy have been tried)</li>
+		</ul>
+	</div>
+
+	<div class="success">
+		<div class="coverage_container"></div>
+		<ul class="articles"></ul>
+	</div>
+
+	<div class="loading">Loading...</div>
+
+	<div class="page_error"><strong>An error has occured; please try again&nbsp;later.</strong> If you are an Internet Explorer user, you must upgrade to version 10 or newer in order to view this&nbsp;content.</div>
+
+	<div class="unpublished">This state's data is not available at this time.</div>
+
+	<div class="invalid_state_id">The requested state is invalid.  Please <a href="/preview!www.lung.org/lung-health-and-diseases/lung-disease-lookup/asthma/asthma-education-advocacy/asthma-care-coverage/database/">return</a>.</div>
+
+	<div class="templates">
+		<section class="coverage_set">
+			<h3 class="coverage_type target"></h3>
+			<table>
+				<thead>
+					<tr>
+						<th>Component</th>
+						<th>Coverage</th>
+						<th title="Age Limit">AL</th>
+						<th title="Age Restrictions">AR</th>
+						<th title="Co-Payments">CO-PAY</th>
+						<th title="Durable Medical Equipment">DME</th>
+						<th title="Eligibility Criteria">EC</th>
+						<th title="Prior Authorization">PA</th>
+						<th title="Quantity Limits">QL</th>
+						<th title="Specialty Visit Limitations">SVL</th>
+						<th title="Stepped Therapy">ST</th>
+					</tr>
+				</thead>
+				<tbody class="coverage_body target"></tbody>
+			</table>
+		</section>
+			<table>
+				<tr class="coverage_items">
+					<td class="component target"></td>
+					<td class="value target"></td>
+					<td class="AL target"></td>
+					<td class="AR target"></td>
+					<td class="CP target"></td>
+					<td class="DME target"></td>
+					<td class="EC target"></td>
+					<td class="PA target"></td>
+					<td class="QL target"></td>
+					<td class="SVL target"></td>
+					<td class="ST target"></td>
+				</tr>
+			</table>
+
+			<li class="article"><a></a></li>
+	</div>
+
+</div>
+
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].onclick = function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight){
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    }
+  }
+}
+</script>
+
+<!-- TEST SPACE -->
+
 <p id="Alabama" style="display:none">${Alabama}</p>
 <p id="Alaska" style="display:none">${Alaska}</p>
 <p id="Arizona" style="display:none">${Arizona}</p>
@@ -6,7 +189,6 @@
 <p id="Colorado" style="display:none">${Colorado}</p>
 <p id="Connecticut" style="display:none">${Connecticut}</p>
 <p id="Delaware" style="display:none">${Delaware}</p>
-<p id="DistrictOfColumbia" style="display:none">${District_of_columbia}</p>
 <p id="Florida" style="display:none">${Florida}</p>
 <p id="Georgia" style="display:none">${Georgia}</p>
 <p id="Hawaii" style="display:none">${Hawaii}</p>
@@ -37,7 +219,6 @@
 <p id="Oklahoma" style="display:none">${Oklahoma}</p>
 <p id="Oregon" style="display:none">${Oregon}</p>
 <p id="Pennsylvania" style="display:none">${Pennsylvania}</p>
-<p id="Puerto_rico" style="display:none">${Puerto_rico}</p>
 <p id="Rhode_island" style="display:none">${Rhode_island}</p>
 <p id="South_carolina" style="display:none">${South_carolina}</p>
 <p id="South_dakota" style="display:none">${South_dakota}</p>
@@ -62,7 +243,6 @@
   var Colorado = document.getElementById("Colorado").innerHTML;
   var Connecticut = document.getElementById("Connecticut").innerHTML;
   var Delaware = document.getElementById("Delaware").innerHTML;
-  var DistrictOfColumbia = document.getElementById("DistrictOfColumbia").innerHTML;
   var Florida = document.getElementById("Florida").innerHTML;
   var Georgia = document.getElementById("Georgia").innerHTML;
   var Hawaii = document.getElementById("Hawaii").innerHTML;
@@ -93,7 +273,6 @@
   var Oklahoma = document.getElementById("Oklahoma").innerHTML;
   var Oregon = document.getElementById("Oregon").innerHTML;
   var Pennsylvania = document.getElementById("Pennsylvania").innerHTML;
-  var Puerto_rico = document.getElementById("Puerto_rico").innerHTML;
   var Rhode_island = document.getElementById("Rhode_island").innerHTML;
   var South_carolina = document.getElementById("South_carolina").innerHTML;
   var South_dakota = document.getElementById("South_dakota").innerHTML;
@@ -129,10 +308,6 @@
         $(".last_update").html(Connecticut);
       } else if (currentState == "delaware" && Delaware != "") {
         $(".last_update").html(Delaware);
-
-      } else if (currentState == "district of columbia" && DistrictOfColumbia != "") {
-        $(".last_update").html(DistrictOfColumbia);
-
       } else if (currentState == "florida" && Florida != "") {
         $(".last_update").html(Florida);
       } else if (currentState == "georgia" && Georgia != "") {
@@ -193,10 +368,6 @@
         $(".last_update").html(Oregon);
       } else if (currentState == "pennsylvania" && Pennsylvania != "") {
         $(".last_update").html(Pennsylvania);
-
-      } else if (currentState == "puerto rico" && Puerto_rico != "") {
-        $(".last_update").html(Puerto_rico);
-
       } else if (currentState == "rhode island" && Rhode_island != "") {
         $(".last_update").html(Rhode_island);
       } else if (currentState == "south carolina" && South_carolina != "") {
@@ -228,7 +399,7 @@
     else {
       console.warn("not an asthmacarecoveragedatabasepage");
     }
-  }; // end checkStateAndReplaceDate
+  };
 
   document.addEventListener("DOMContentLoaded", function(event) {
     setTimeout(checkStateAndReplaceDate, 1500);
